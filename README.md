@@ -48,6 +48,14 @@ A sophisticated mock data generator for developers and testers. This tool create
    npm run build
    ```
 
+## ☁️ Cloudflare Pages 部署
+
+| 配置项 | 值 |
+|--------|-----|
+| 构建命令 | `npm run build` |
+| 输出目录 | `dist` |
+| 根目录 | `/` |
+
 ## 📄 License
 
 MIT License.
