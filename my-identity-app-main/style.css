@@ -1,0 +1,396 @@
+:root {
+    --bg-color: #0F172A;
+    --accent-color: #22D3EE;
+    --accent-glow: rgba(34, 211, 238, 0.4);
+    --text-main: #F8FAFC;
+    --text-muted: #94A3B8;
+    --glass-bg: rgba(15, 23, 42, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    --font-sans: 'Inter', system-ui, sans-serif;
+
+    /* Backgrounds */
+    --bg-panel: rgba(15, 23, 42, 0.8);
+    --grid-color: rgba(255, 255, 255, 0.03);
+
+    /* Semantic Color Mapping */
+    --color-primary: #22D3EE;
+    /* Cyan */
+    --color-emerald: #10B981;
+    /* Emerald */
+    --color-purple: #A855F7;
+    /* Purple */
+    --color-primary-rgb: 34, 211, 238;
+    --color-emerald-rgb: 16, 185, 129;
+    --color-purple-rgb: 168, 85, 247;
+}
+
+[data-theme="light"] {
+    --bg-color: #201511;
+    /* Desaturated Deep Warm Dark */
+    --bg-panel: rgba(40, 25, 20, 0.95);
+    /* Deep Warm Panel */
+    /* Matching Panel */
+    --grid-color: rgba(249, 115, 22, 0.07);
+    /* Orange Grid Lines */
+    --accent-color: #F97316;
+    /* Neon Orange */
+    --accent-glow: rgba(249, 115, 22, 0.4);
+    --text-main: #FAFAF9;
+    /* Warm White */
+    --text-muted: #A8A29E;
+    /* Warm Grey */
+    --glass-bg: rgba(60, 30, 10, 0.6);
+    /* Warm Glass */
+    --glass-border: rgba(249, 115, 22, 0.2);
+
+    /* Override all semantic colors to Orange for Mono-Orange Mode */
+    --color-primary: #F97316;
+    --color-emerald: #F97316;
+    --color-purple: #F97316;
+    --color-primary-rgb: 249, 115, 22;
+    --color-emerald-rgb: 249, 115, 22;
+    --color-purple-rgb: 249, 115, 22;
+}
+
+/* Orange Cursor for Light Theme */
+[data-theme="light"] body {
+    cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 5L14 23L17 16L24 13L5 5Z" stroke="%23F97316" stroke-width="4" stroke-opacity="0.3" stroke-linejoin="round"/><path d="M5 5L14 23L17 16L24 13L5 5Z" stroke="%23F97316" stroke-width="1.5" fill="rgba(67, 20, 7, 0.5)" stroke-linejoin="round"/></svg>') 5 5, auto;
+}
+
+[data-theme="light"] a,
+[data-theme="light"] button,
+[data-theme="light"] .glitch-btn,
+[data-theme="light"] .data-item,
+[data-theme="light"] [role="button"] {
+    cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 5L14 23L17 16L24 13L5 5Z" stroke="%23F97316" stroke-width="4" stroke-opacity="0.3" stroke-linejoin="round"/><path d="M5 5L14 23L17 16L24 13L5 5Z" stroke="%23F97316" stroke-width="1.5" fill="rgba(67, 20, 7, 0.5)" stroke-linejoin="round"/></svg>') 5 5, auto !important;
+}
+
+* {
+    transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    /* Custom Tech Cursor */
+    /* Custom Tech Cursor with Glow */
+    cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 5L14 23L17 16L24 13L5 5Z" stroke="%2322D3EE" stroke-width="4" stroke-opacity="0.3" stroke-linejoin="round"/><path d="M5 5L14 23L17 16L24 13L5 5Z" stroke="%2322D3EE" stroke-width="1.5" fill="rgba(15, 23, 42, 0.5)" stroke-linejoin="round"/></svg>') 5 5, auto;
+}
+
+/* Custom Pointer for interactive elements */
+a,
+button,
+.glitch-btn,
+.data-item,
+[role="button"] {
+    cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 5L14 23L17 16L24 13L5 5Z" stroke="%2322D3EE" stroke-width="4" stroke-opacity="0.3" stroke-linejoin="round"/><path d="M5 5L14 23L17 16L24 13L5 5Z" stroke="%2322D3EE" stroke-width="1.5" fill="rgba(15, 23, 42, 0.5)" stroke-linejoin="round"/></svg>') 5 5, auto !important;
+}
+
+/* Background Effects */
+.bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image:
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.bg-glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.3;
+    /* Adjusted opacity since accent-glow is 0.4 */
+}
+
+/* Glassmorphism Panel */
+.cyber-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.cyber-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    opacity: 0.5;
+}
+
+/* Typography */
+.font-mono {
+    font-family: var(--font-mono);
+}
+
+.label-text {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.data-value {
+    color: var(--text-main);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Glitch Button */
+.glitch-btn {
+    position: relative;
+    background: var(--accent-color);
+    color: #000;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.2s;
+    box-shadow: 0 0 10px var(--accent-glow);
+    text-transform: uppercase;
+    border-radius: 8px;
+    /* Rounded corners */
+}
+
+.glitch-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px var(--accent-glow);
+    background: #fff;
+}
+
+.glitch-btn:active {
+    transform: scale(0.98);
+}
+
+/* Data Items & Copy Interaction */
+.data-item {
+    position: relative;
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.02);
+    user-select: none;
+    clip-path: inset(-200% -200% 0 -200%);
+}
+
+.data-item:hover {
+    border-color: var(--accent-color);
+    background: rgba(34, 211, 238, 0.05);
+    box-shadow: 0 0 15px rgba(34, 211, 238, 0.1);
+}
+
+.data-item:active {
+    background: rgba(34, 211, 238, 0.1);
+}
+
+/* 扫描线效果 - 增强悬停动态感 */
+/* 扫描线效果 - 增强悬停动态感 */
+.data-item::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(34, 211, 238, 0.1) 50%,
+            transparent 100%);
+    transform: translateY(-100%);
+    pointer-events: none;
+    opacity: 0;
+}
+
+.data-item:hover::after {
+    animation: scan-line 1.5s linear forwards;
+}
+
+@keyframes scan-line {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+/* 点击波纹效果 */
+.data-item.active-ripple {
+    background: rgba(34, 211, 238, 0.2);
+    box-shadow: 0 0 30px rgba(34, 211, 238, 0.4);
+    border-color: #ffffff;
+    transform: scale(0.98);
+}
+
+.data-item.copied {
+    animation: flash-border 0.5s ease;
+    border-color: #4Ade80;
+}
+
+@keyframes flash-border {
+    0% {
+        border-color: var(--accent-color);
+    }
+
+    50% {
+        border-color: #ffffff;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+
+    100% {
+        border-color: #4Ade80;
+    }
+}
+
+/* Toast Notification */
+.toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.toast {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    animation: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1), fade-out 0.5s ease 1.5s forwards;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+/* Layout Utilities */
+.grid-cols-custom {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .grid-cols-custom {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.cyber-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0F172A;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+}
+
+
+@keyframes float-up-text {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 0) scale(0.5);
+    }
+
+    15% {
+        opacity: 1;
+        transform: translate(-50%, -20px) scale(1.2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -100px) scale(1.2);
+    }
+}
+
+.click-text-effect {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    font-weight: 900;
+    font-size: 1.2rem;
+    animation: float-up-text 1.5s ease-out forwards;
+    white-space: nowrap;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: var(--font-sans);
+    /* Use sans for better readability of Chinese */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
